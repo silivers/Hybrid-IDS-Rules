@@ -14,13 +14,15 @@
 
 ## 系统架构
 
-Hybrid-IDS-Rules/
-├── config.py # 配置文件
-├── database.py # 数据库操作模块
-├── parser.py # 规则解析模块
-├── models.py # 数据模型定义
-├── importer.py # 主导入程序
-└── requirements.txt # Python依赖
+| 文件/目录              | 说明           |
+| ---------------------- | -------------- |
+| `Hybrid-IDS-Rules/`    | 项目根目录     |
+| ├── `config.py`        | 配置文件       |
+| ├── `database.py`      | 数据库操作模块 |
+| ├── `parser.py`        | 规则解析模块   |
+| ├── `models.py`        | 数据模型定义   |
+| ├── `importer.py`      | 主导入程序     |
+| └── `requirements.txt` | Python依赖     |
 
 ### 数据库表结构
 
