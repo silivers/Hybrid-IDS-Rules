@@ -23,7 +23,8 @@
 | ├── `models.py`        | 数据模型定义   |
 | ├── `importer.py`      | 主导入程序     |
 | └── `requirements.txt` | Python依赖     |
-
+| └── `generate_db_report.py` | 生成数据库报告以供后续调用|
+| └── `database_info.md` | 数据库报告(运行后生成) |
 ### 数据库表结构
 
 | 表名            | 说明                              |
