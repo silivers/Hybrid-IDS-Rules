@@ -61,7 +61,7 @@ class Database:
         """创建 IDS 完整表结构"""
         log("创建数据库表...")
         
-        # 1. 规则主表（增强版）- 修复字段长度问题
+        # 1. 规则主表（增强版）
         rules_table = """
         CREATE TABLE IF NOT EXISTS snort_rules (
             sid INT UNSIGNED PRIMARY KEY COMMENT '规则唯一标识符',
@@ -190,6 +190,40 @@ class Database:
                 self.cursor.execute(stats_view)
                 self.commit()
                 log("所有表创建成功")
+            
+            # 用于模型检测告警
+            self.cursor.execute("SELECT 1 FROM snort_rules WHERE sid = 0")
+            if not self.cursor.fetchone():
+                # 计算一个固定的哈希值
+                import hashlib
+                fixed_hash = hashlib.md5(b'sid=0_model_alert_placeholder').hexdigest()
+                
+                self.cursor.execute("""
+                    INSERT INTO snort_rules 
+                    (sid, msg, classtype, rule_text, rule_hash, protocol, 
+                     source_ip, source_port, direction, dest_ip, dest_port,
+                     severity, enabled, rev)
+                    VALUES (
+                        0, 
+                        'Model Detection Alert', 
+                        'model-detection',
+                        'alert model detection (auto-generated for ML alerts)', 
+                        %s,
+                        'any',
+                        'any', 
+                        'any', 
+                        '->', 
+                        'any', 
+                        'any',
+                        2,
+                        1,
+                        1
+                    )
+                """, (fixed_hash,))
+                self.commit()
+                log("已创建 sid=0 占位规则（用于模型检测告警）")
+            else:
+                log("sid=0 占位规则已存在，跳过创建")
             
             return True
         except Error as e:
