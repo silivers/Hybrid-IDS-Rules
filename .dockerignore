@@ -1,0 +1,35 @@
+# Git 相关
+.git/
+.gitignore
+.gitattributes
+
+# Python 相关
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+.venv
+venv/
+ENV/
+env/
+
+# IDE 相关
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 文档和报告（不需要打包到镜像）
+README.md
+database_info.md
+generate_db_report.py
+
+
+# Docker 相关
+Dockerfile
+docker-compose.yml
+.dockerignore
