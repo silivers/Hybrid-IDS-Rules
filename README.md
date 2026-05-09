@@ -1,6 +1,10 @@
 # Snort 规则导入系统
 
 一个完整的 Snort 规则解析和导入系统，支持将 Snort 规则文件导入到 MySQL/MariaDB 数据库中，用于 IDS/IPS 系统的规则管理和实时匹配。
+## 前端链接
+- [Hybrid-IDS-Web](https://github.com/silivers/Hybrid-IDS-Web)
+
+
 
 ## 功能特性
 
@@ -58,3 +62,8 @@ pip install -r requirements.txt
 
 ```bash
 python importer.py
+```
+## 打包为docker镜像
+```bash
+docker build -t snort-rule .
+```
