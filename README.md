@@ -23,6 +23,8 @@
 | ├── `models.py`        | 数据模型定义   |
 | ├── `importer.py`      | 主导入程序     |
 | └── `requirements.txt` | Python依赖     |
+| ├── `dockerfile`       | Docker 镜像构建文件 |
+| ├── `.dockerignore`    | Docker 构建忽略文件 
 | └── `generate_db_report.py` | 生成数据库报告以供后续调用|
 | └── `database_info.md` | 数据库报告(运行后生成) |
 ### 数据库表结构
@@ -41,11 +43,13 @@
 - Python 3.8+
 - MySQL 5.7+ / MariaDB 10.3+
 - pip 包管理器
+- Docker (可选，用于容器化部署)
+
 
 ### 2. 安装依赖
 
 ```bash
-pip install mysql-connector-python
+pip install -r requirements.txt
 ```
 
 ## 使用方法

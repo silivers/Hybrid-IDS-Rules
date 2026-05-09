@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 """配置文件"""
 
-# ========== 数据库配置 ==========
+import os
+
+# ========== 数据库配置（支持环境变量，优先使用环境变量）==========
 DB_CONFIG = {
-    'host': 'localhost',
-    'port': 3306,
-    'user': 'root',
-    'password': '1234',
-    'database': 'snort_db'
+    'host': os.getenv('DB_HOST', 'localhost'),
+    'port': int(os.getenv('DB_PORT', 3306)),
+    'user': os.getenv('DB_USER', 'root'),
+    'password': os.getenv('DB_PASSWORD', '1234'),
+    'database': os.getenv('DB_NAME', 'snort_db')
 }
 
 # ========== 规则文件配置 ==========
-RULES_FILE = 'snort3-community.rules'  # 规则文件路径
+RULES_FILE = os.getenv('RULES_FILE', 'snort3-community.rules')
 
 # ========== 导入配置 ==========
-BATCH_SIZE = 500                         # 批量插入数量
-VERBOSE = True                           # 是否输出详细日志
+BATCH_SIZE = int(os.getenv('BATCH_SIZE', 500))
+VERBOSE = os.getenv('VERBOSE', 'true').lower() == 'true'
 
 # ========== 严重程度映射 ==========
 SEVERITY_MAP = {
